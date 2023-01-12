@@ -4,5 +4,6 @@ EXPOSE 8080
 EXPOSE 5858
 WORKDIR /app
 ADD . /app
-RUN npm install express --save  && npm install 
+RUN npm install express --save  
+RUN npm install 
 CMD ["npm","start"]
