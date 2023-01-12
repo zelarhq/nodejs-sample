@@ -8,8 +8,8 @@ env:
 jobs:
   build_and_preview:
     runs-on: 
-    #- self-hosted
-    - ubuntu-latest
+    - self-hosted
+#     - ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 #       - name: Build Image
