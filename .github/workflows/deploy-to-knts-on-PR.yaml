@@ -12,21 +12,21 @@ jobs:
     - ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build Image
-        id: build-image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: gcr.io/klusternetes-dev/nodejs-sample
-          tags: latest ${{ github.sha }}
-          dockerfiles: |
-            ./Dockerfile
-      - uses: google-github-actions/setup-gcloud@v0
-      - uses: RafikFarhad/push-to-gcr-github-action@v4
-        with:
-          gcloud_service_key: ${{ secrets.GCR_PASSWORD }}
-          registry: gcr.io
-          project_id: klusternetes-dev
-          image_name: nodejs-sample
+#       - name: Build Image
+#         id: build-image
+#         uses: redhat-actions/buildah-build@v2
+#         with:
+#           image: gcr.io/klusternetes-dev/nodejs-sample
+#           tags: latest ${{ github.sha }}
+#           dockerfiles: |
+#             ./Dockerfile
+#       - uses: google-github-actions/setup-gcloud@v0
+#       - uses: RafikFarhad/push-to-gcr-github-action@v4
+#         with:
+#           gcloud_service_key: ${{ secrets.GCR_PASSWORD }}
+#           registry: gcr.io
+#           project_id: klusternetes-dev
+#           image_name: nodejs-sample
       - uses: ./
         id: k8s-master
         with:
