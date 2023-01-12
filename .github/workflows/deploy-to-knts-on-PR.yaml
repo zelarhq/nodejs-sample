@@ -27,7 +27,7 @@ jobs:
 #           registry: gcr.io
 #           project_id: klusternetes-dev
 #           image_name: nodejs-sample
-      - uses: ./
+      - uses: zelarhq/k8s-cluster@main
         id: k8s-master
         with:
           version: v1.21.2-k3s1
