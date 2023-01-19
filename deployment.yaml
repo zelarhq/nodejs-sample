@@ -31,7 +31,7 @@ spec:
         app: node-app
     spec:
       containers:
-      - image: gcr.io/klusternetes-dev/nodejs-sample:${{github.sha}}
+      - image: gcr.io/klusternetes-dev/nodejs-sample:latest
         imagePullPolicy: Always
         name: nodejs-sample
       imagePullSecrets:
