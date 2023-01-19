@@ -12,14 +12,14 @@ jobs:
 #     - ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build Image
-        id: build-image
-        uses: redhat-actions/buildah-build@v2
-        with:
-          image: gcr.io/klusternetes-dev/nodejs-sample
-          tags: latest ${{github.sha}}
-          dockerfiles: |
-            ./Dockerfile
+#       - name: Build Image
+#         id: build-image
+#         uses: redhat-actions/buildah-build@v2
+#         with:
+#           image: gcr.io/klusternetes-dev/nodejs-sample
+#           tags: latest ${{github.sha}}
+#           dockerfiles: |
+#             ./Dockerfile
       - uses: google-github-actions/setup-gcloud@v0
       - uses: RafikFarhad/push-to-gcr-github-action@v4
         with:
