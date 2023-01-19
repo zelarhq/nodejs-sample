@@ -17,7 +17,7 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: gcr.io/klusternetes-dev/nodejs-sample
-          tags: latest ${{github_sha}}
+          tags: latest ${{github.sha}}
           dockerfiles: |
             ./Dockerfile
       - uses: google-github-actions/setup-gcloud@v0
@@ -36,6 +36,6 @@ jobs:
           token: ${{ secrets.KNTS_TOKEN }}
       - name: Kubernetes Deployment
         run: |
-            kubectl create deploy node-app --image=gcr.io/klusternetes-dev/nodejs-sample:${{github_sha}} --replicas=1 
+            kubectl create deploy node-app --image=gcr.io/klusternetes-dev/nodejs-sample:${{github.sha}} --replicas=1 
       - run: |
           kubectl get all
