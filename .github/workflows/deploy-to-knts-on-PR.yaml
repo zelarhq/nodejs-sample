@@ -35,7 +35,10 @@ jobs:
           name: nodejs-cluster
           token: ${{ secrets.KNTS_TOKEN }}
       - name: Kubernetes Deployment
-        run: |
-            kubectl create deploy node-app --image=gcr.io/klusternetes-dev/nodejs-sample:${{github.sha}} --replicas=1 
+        uses: TanmoySG/k-deploy-action@v0.2.2-alpha
+        with:
+          kubeconfig: /root/.knts/config
+          namespace: 'default'
+          manifest: ./deployment.yaml
       - run: |
           kubectl get all
