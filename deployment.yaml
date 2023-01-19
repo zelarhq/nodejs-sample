@@ -51,5 +51,5 @@ spec:
     targetPort: 5858
   selector:
     app: node-app
-  type: NodePort
+  type: ClusterIP
     
