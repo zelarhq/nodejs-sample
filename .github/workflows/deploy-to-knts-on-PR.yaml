@@ -27,7 +27,7 @@ jobs:
           registry: gcr.io
           project_id: klusternetes-dev
           image_name: nodejs-sample
-          image_tag: ${{github.ref.name}}
+          image_tag: latest,${{github.head.ref}}
       - run: |
           echo "DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           rm -rf ~/.knts/config
