@@ -21,7 +21,7 @@ jobs:
 #           dockerfiles: |
 #             ./Dockerfile
       - run: |
-            echo "${{github.head.ref}}"
+            echo "$GITHUB_HEAD_REF"
       - uses: google-github-actions/setup-gcloud@v0
       - uses: RafikFarhad/push-to-gcr-github-action@v4
         with:
