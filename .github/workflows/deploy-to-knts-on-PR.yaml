@@ -20,6 +20,8 @@ jobs:
 #           tags: latest ${{github.sha}}
 #           dockerfiles: |
 #             ./Dockerfile
+      - run: |
+            echo "${{github.head.ref}}"
       - uses: google-github-actions/setup-gcloud@v0
       - uses: RafikFarhad/push-to-gcr-github-action@v4
         with:
