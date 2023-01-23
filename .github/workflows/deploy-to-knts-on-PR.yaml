@@ -32,7 +32,6 @@ jobs:
           image_tag: latest,${{ env.BRANCH }}
       - run: |
           echo "DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
-          rm -rf ~/.knts/config
       - uses: zelarhq/k8s-cluster@main
         id: k8s-master
         with:
