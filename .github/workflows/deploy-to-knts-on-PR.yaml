@@ -22,7 +22,7 @@ jobs:
 #             ./Dockerfile
       - run: |
             echo "BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
-            rm -rf ~/.knts/config
+            rm -rf ~/.knts/
       - uses: google-github-actions/setup-gcloud@v0
       - uses: RafikFarhad/push-to-gcr-github-action@v4
         with:
@@ -43,7 +43,7 @@ jobs:
       - name: Kubernetes Deployment
         uses: TanmoySG/k-deploy-action@v0.2.2-alpha
         with:
-          kubeconfig: /root/.knts/config
+          kubeconfig: ~/.knts/config
           namespace: 'default'
           manifest: ./deployment.yaml
       - run: |
