@@ -21,7 +21,7 @@ jobs:
 #           dockerfiles: |
 #             ./Dockerfile
       - run: |
-            echo "$GITHUB_HEAD_REF"
+            echo "BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
       - uses: google-github-actions/setup-gcloud@v0
       - uses: RafikFarhad/push-to-gcr-github-action@v4
         with:
@@ -29,7 +29,7 @@ jobs:
           registry: gcr.io
           project_id: klusternetes-dev
           image_name: nodejs-sample
-          image_tag: latest,"$GITHUB_HEAD_REF"
+          image_tag: latest, ${{ env.BRANCH }}
       - run: |
           echo "DATE=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
           rm -rf ~/.knts/config
@@ -38,7 +38,7 @@ jobs:
         with:
           version: v1.21.2-k3s1
           size: SMALL
-          name: node-${{ env.DATE }}
+          name: node-${{ env.BRANCH }}
           token: ${{ secrets.KNTS_TOKEN }}
       - name: Kubernetes Deployment
         uses: TanmoySG/k-deploy-action@v0.2.2-alpha
