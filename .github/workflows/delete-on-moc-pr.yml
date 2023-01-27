@@ -22,4 +22,4 @@ jobs:
           token: ${{ secrets.KNTS_TOKEN }}
       - run: |
            ls ~/.knts
-           # rm -rf ~/.knts
+           rm -rf ~/.knts
