@@ -31,7 +31,7 @@ jobs:
      
       - run: |
           export KUBECONFIG=~/.knts/config
-          # echo "HOST=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
+          # echo "INGRESS=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
           echo ${{ env.INGRESS }}
           # sed -i 's/nodesampleing/ ${{ env.HOST }}/g' deployment.yaml
           kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
