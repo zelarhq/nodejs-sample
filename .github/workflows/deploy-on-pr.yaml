@@ -46,4 +46,4 @@ jobs:
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
-            Service url: ${{ env.INGRESS }}
+            Service url: https://${{ env.INGRESS }}
