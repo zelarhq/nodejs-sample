@@ -31,6 +31,7 @@ jobs:
           export KUBECONFIG=~/.knts/config
           echo "HOST_NAME=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
           echo ${{ env.HOST_NAME }}
+          # sed -i 's/nodesampleing/ ${{ env.HOST_NAME }}/g' deployment.yaml
           kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
           sleep 20;
           kubectl get all
