@@ -39,11 +39,13 @@ jobs:
           size: SMALL
           name: node-${{ env.BRANCH }}
           token: ${{ secrets.KNTS_TOKEN }}
-      - name: Kubernetes Deployment
-        uses: TanmoySG/k-deploy-action@v0.2.2-alpha
-        with:
-          kubeconfig: ~/.knts/config
-          namespace: 'default'
-          manifest: ./deployment.yaml
+#       - name: Kubernetes Deployment
+#         uses: TanmoySG/k-deploy-action@v0.2.2-alpha
+#         with:
+#           kubeconfig: ~/.knts/config
+#           namespace: 'default'
+#           manifest: ./deployment.yaml
+      - run: |
+          kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
       - run: |
           kubectl get all
