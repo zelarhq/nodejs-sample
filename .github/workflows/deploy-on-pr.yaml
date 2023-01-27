@@ -29,4 +29,5 @@ jobs:
       - run: |
           ls ~/.knts/
           export KUBECONFIG=~/.knts/config
+          kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
           kubectl get all 
