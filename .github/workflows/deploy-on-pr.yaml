@@ -8,6 +8,8 @@ jobs:
   build_and_preview:
     runs-on: 
     - self-hosted
+    permissions:
+      pull-requests: write
     steps:
       - uses: actions/checkout@v2
       - run: |
@@ -41,3 +43,7 @@ jobs:
           kubectl get ing
         # env: 
          # HOST_NAME: ${{ kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g' }}
+      - uses: mshick/add-pr-comment@v2
+        with:
+          message: |
+            Service url: ${{ env.INGRESS }}
