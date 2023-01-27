@@ -8,8 +8,8 @@ jobs:
   build_and_preview:
     runs-on: 
     - self-hosted
-    permissions:
-      pull-requests: write
+#     permissions:
+#       pull-requests: write
     steps:
       - uses: actions/checkout@v2
       - run: |
