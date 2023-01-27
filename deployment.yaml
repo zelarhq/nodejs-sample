@@ -60,7 +60,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: nodesampleing
+  - host: ${HOST_NAME}
     http:
       paths:
         - path: /
