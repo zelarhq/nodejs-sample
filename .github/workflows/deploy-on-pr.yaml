@@ -41,8 +41,7 @@ jobs:
           sleep 20;
           kubectl get all
           kubectl get ing
-        # env: 
-         # HOST_NAME: ${{ kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g' }}
+
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
