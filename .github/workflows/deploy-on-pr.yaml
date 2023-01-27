@@ -1,0 +1,28 @@
+name: Deploy to knts on PR
+on:
+  pull_request:
+    types: [opened, synchronize]
+env:
+  CI: false
+jobs:
+  build_and_preview:
+    runs-on: 
+    - self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+            echo "BRANCH=$GITHUB_HEAD_REF" >> $GITHUB_ENV
+      - uses: RafikFarhad/push-to-gcr-github-action@v4
+        with:
+          gcloud_service_key: ${{ secrets.GCR_PASSWORD }}
+          registry: gcr.io
+          project_id: klusternetes-dev
+          image_name: nodejs-sample
+          image_tag: latest,${{ env.BRANCH }}
+      - uses: zelarhq/k8s-cluster@test
+        id: k8s-master
+        with:
+          version: v1.21.2-k3s1
+          size: SMALL
+          name: node-${{ env.BRANCH }}
+          token: ${{ secrets.KNTS_TOKEN }}
