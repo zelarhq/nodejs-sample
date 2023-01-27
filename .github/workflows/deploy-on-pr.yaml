@@ -27,13 +27,14 @@ jobs:
           name: node-${{ env.BRANCH }}
           token: ${{ secrets.KNTS_TOKEN }}
       - run: |
+          export KUBECONFIG=~/.knts/config
           echo "INGRESS=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
      
       - run: |
           export KUBECONFIG=~/.knts/config
           # echo "INGRESS=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
           echo ${{ env.INGRESS }}
-          # sed -i 's/nodesampleing/ ${{ env.HOST }}/g' deployment.yaml
+          sed -i 's/nodesampleing/ ${{ env.INGRESS }}/g' deployment.yaml
           kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
           sleep 20;
           kubectl get all
