@@ -47,8 +47,13 @@ metadata:
 spec:
   ports:
   - port: 5858
+    name: 5858
     protocol: TCP
     targetPort: 5858
+  - port: 8080
+    name: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
     app: node-app
   type: ClusterIP
