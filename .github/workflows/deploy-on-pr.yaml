@@ -29,6 +29,7 @@ jobs:
       - run: |
           ls ~/.knts/
           export KUBECONFIG=~/.knts/config
+          kubectl get config
           kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
           sleep 20;
           kubectl get all
