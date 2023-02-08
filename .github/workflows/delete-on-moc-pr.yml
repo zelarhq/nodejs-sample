@@ -17,3 +17,6 @@ jobs:
         with:
           name: node-${{ env.BRANCH }}
           token: ${{ secrets.KNTS_TOKEN }}
+      - run: |
+          ls .knts
+          rm -rf .knts
