@@ -8,8 +8,6 @@ jobs:
   build_and_preview:
     runs-on: 
     - self-hosted
-#     permissions:
-#       pull-requests: write
     steps:
       - uses: actions/checkout@v2
       - run: |
@@ -33,8 +31,6 @@ jobs:
           echo "INGRESS=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
      
       - run: |
-          export KUBECONFIG=~/.knts/config
-          # echo "INGRESS=$(kubectl config view -o jsonpath='{.clusters[].cluster.server}' | sed 's|https://vc|nodesam|g')" >>  $GITHUB_ENV
           echo ${{ env.INGRESS }}
           sed -i 's/nodesampleing/ ${{ env.INGRESS }}/g' deployment.yaml
           kubectl apply -f ./deployment.yaml -n default --kubeconfig ~/.knts/config
