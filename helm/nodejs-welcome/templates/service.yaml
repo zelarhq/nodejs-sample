@@ -3,12 +3,12 @@ kind: Service
 metadata:
   labels:
     app: node-app
-  name: node-app-svc
+  name: {{ .Values.service.name }}
 spec:
   ports:
-  - port: 8080
+  - port: {{ .Values.service.port }}
     protocol: TCP
-    targetPort: 8080
+    targetPort: {{ .Values.service.port }}
   selector:
     app: node-app
-  type: ClusterIP
+  type: {{ .Values.service.type }}

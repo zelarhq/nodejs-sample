@@ -3,15 +3,15 @@ kind: Ingress
 metadata:
   name: node-sample
 spec:
-  ingressClassName: nginx
+  ingressClassName: {{ .Values.ingress.className }}
   rules:
-  - host: nodesampleing
+  - host: {{ .Values.ingress.hosts }}
     http:
       paths:
         - path: /
           pathType: Prefix
           backend:
             service:
-              name: node-app-svc
+              name: {{ .Values.service.name }}
               port:
-                number: 8080
+                number: {{ .Values.service.port }}

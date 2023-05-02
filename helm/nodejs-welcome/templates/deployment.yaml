@@ -5,7 +5,7 @@ metadata:
     app: node-app
   name: node-app
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: node-app
@@ -16,9 +16,8 @@ spec:
         app: node-app
     spec:
       containers:
-      - image: gcr.io/klusternetes-dev/nodejs-sample:latest
+      - image: {{.Values.image.repository }}:{{.Values.image.tag }}   #gcr.io/klusternetes-dev/nodejs-sample:latest
         imagePullPolicy: Always
         name: nodejs-sample
       imagePullSecrets:
-      - name: regcred                             
-      serviceAccount: image-push-sa 
+      - name: {{ .Values.secretName }}                            
