@@ -1,15 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "nodejs-welcome.fullname" . }}
   labels:
-    {{- include "nodejs-welcome.labels" . | nindent 4 }}
+    app: node-app
+  name: node-app-svc
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
   selector:
-    {{- include "nodejs-welcome.selectorLabels" . | nindent 4 }}
+    app: node-app
+  type: ClusterIP
